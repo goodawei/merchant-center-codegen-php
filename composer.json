@@ -1,0 +1,15 @@
+{
+    "name": "nucarf/merchant-center",
+    "authors": [
+        {
+            "name": "lihongwei",
+            "email": "lihongwei@nucarf.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Nucarf\\Shop\\": "src/Nucarf/Merchant"
+        }
+    }
+}
