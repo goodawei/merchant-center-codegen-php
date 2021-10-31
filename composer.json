@@ -9,7 +9,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Nucarf\\Shop\\": "src/Nucarf/Merchant"
+            "Nucarf\\Merchant\\": "src/Nucarf/Merchant"
         }
     }
 }
