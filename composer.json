@@ -1,5 +1,7 @@
 {
     "name": "nucarf/merchant-center",
+    "description": "Nucarf 商家中心codegen for php",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "lihongwei",
