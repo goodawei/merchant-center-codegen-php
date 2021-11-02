@@ -35,6 +35,14 @@ interface UserServiceIf {
    * @return \Nucarf\Merchant\Users\Entity\UserPaginator
    */
   public function userList($keyword);
+  /**
+   * 创建一个商家用户
+   * 
+   * 
+   * @param \Nucarf\Merchant\Users\Entity\User $user
+   * @return \Nucarf\Merchant\Users\Entity\User
+   */
+  public function createUser(\Nucarf\Merchant\Users\Entity\User $user);
 }
 
 

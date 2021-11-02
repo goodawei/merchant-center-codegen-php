@@ -131,6 +131,57 @@ class UserServiceClient implements \Nucarf\Merchant\Users\Service\UserServiceIf 
     throw new \Exception("userList failed: unknown result");
   }
 
+  public function createUser(\Nucarf\Merchant\Users\Entity\User $user)
+  {
+    $this->send_createUser($user);
+    return $this->recv_createUser();
+  }
+
+  public function send_createUser(\Nucarf\Merchant\Users\Entity\User $user)
+  {
+    $args = new \Nucarf\Merchant\Users\Service\UserService_createUser_args();
+    $args->user = $user;
+    $bin_accel = ($this->output_ instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_write_binary');
+    if ($bin_accel)
+    {
+      thrift_protocol_write_binary($this->output_, 'createUser', TMessageType::CALL, $args, $this->seqid_, $this->output_->isStrictWrite());
+    }
+    else
+    {
+      $this->output_->writeMessageBegin('createUser', TMessageType::CALL, $this->seqid_);
+      $args->write($this->output_);
+      $this->output_->writeMessageEnd();
+      $this->output_->getTransport()->flush();
+    }
+  }
+
+  public function recv_createUser()
+  {
+    $bin_accel = ($this->input_ instanceof TBinaryProtocolAccelerated) && function_exists('thrift_protocol_read_binary');
+    if ($bin_accel) $result = thrift_protocol_read_binary($this->input_, '\Nucarf\Merchant\Users\Service\UserService_createUser_result', $this->input_->isStrictRead());
+    else
+    {
+      $rseqid = 0;
+      $fname = null;
+      $mtype = 0;
+
+      $this->input_->readMessageBegin($fname, $mtype, $rseqid);
+      if ($mtype == TMessageType::EXCEPTION) {
+        $x = new TApplicationException();
+        $x->read($this->input_);
+        $this->input_->readMessageEnd();
+        throw $x;
+      }
+      $result = new \Nucarf\Merchant\Users\Service\UserService_createUser_result();
+      $result->read($this->input_);
+      $this->input_->readMessageEnd();
+    }
+    if ($result->success !== null) {
+      return $result->success;
+    }
+    throw new \Exception("createUser failed: unknown result");
+  }
+
 }
 
 
